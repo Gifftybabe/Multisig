@@ -8,7 +8,8 @@ contract MultisigFactory {
     MultiSig[] multisigClones;
 
     function createMultisigWallet(uint256 _quorum, address[] memory _validSigners) external returns (MultiSig newMulsig_, uint256 length_) {
-
+        require(_quorum > 0, "Invalid Quorum");
+        require(_validSigners.length >= _quorum, "Insufficient Signers");
         newMulsig_ = new MultiSig(_quorum, _validSigners);
 
         multisigClones.push(newMulsig_);

@@ -3,7 +3,7 @@ pragma solidity ^0.8.24;
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract MultiSig {
-    uint8 public quorum;
+    uint256 public quorum;
     uint8 public noOfValidSigners;
     uint256 public txCount;
     
@@ -20,7 +20,7 @@ contract MultiSig {
     }
 
     struct QuorumUpdateProposal {
-        uint8 newQuorum;
+        uint256 newQuorum;
         uint256 approvals;
         bool isExecuted;
         address proposer;
@@ -35,7 +35,7 @@ contract MultiSig {
 
     uint256 public quorumProposalCount;
 
-    constructor(uint8 _quorum, address[] memory _validSigners) {
+    constructor(uint256 _quorum, address[] memory _validSigners) {
         require(_validSigners.length > 1, "few valid signers");
         require(_quorum > 1, "quorum is too small");
 
@@ -106,7 +106,7 @@ contract MultiSig {
     }
 
     // Function to propose and approve quorum update
-    function proposeAndApproveQuorum(uint8 _newQuorum) external {
+    function proposeAndApproveQuorum(uint256 _newQuorum) external {
         require(isValidSigner[msg.sender], "not a valid signer");
         require(_newQuorum > 1, "invalid quorum");
         require(_newQuorum <= noOfValidSigners, "invalid quorum");

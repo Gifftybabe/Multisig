@@ -1,54 +1,54 @@
 
 
-# MultiSig Wallet & Token Management Smart Contracts
+# MultiSig and Token Contracts
 
-## Overview
+This repository contains smart contracts for a MultiSig Wallet and an ERC20 Token, both deployed on the Lisk Sepolia testnet.
 
-This project consists of a collection of Solidity smart contracts that provide functionality for a multi-signature wallet and a token management system. The primary features include multi-sig transaction approval, quorum updates, and a token contract with minting capabilities.
+## Contracts Overview
 
-### Contracts
+### 1. **MultiSig Contract**
+The MultiSig contract allows multiple signers to approve transactions. A quorum is set, and transactions require approval from a specified number of signers before execution. It also allows for proposing and approving quorum updates.
 
-1. **MultiSig Contract**
-   - Manages multi-signature transactions where a group of signers must approve a transaction before execution.
-   - Handles ERC20 token transfers with quorum-based approval.
-   - Allows proposals to update the quorum dynamically with approval from valid signers.
+- **Contract Address on Lisk Sepolia Testnet**: `0x34C28447972e10d107C99a95a743Cb8622611A04`
+- **Functions:**
+  - `transfer`: Create a new transaction that needs approval.
+  - `approveTx`: Approve a transaction.
+  - `proposeAndApproveQuorum`: Propose and approve a quorum update.
+  - `getOneTransaction`: Retrieve details of a specific transaction by ID.
 
-2. **MultiSig Factory Contract**
-   - Provides the ability to deploy multiple instances of the `MultiSig` wallet contract.
-   - Keeps track of deployed wallet instances for easy access.
+### 2. **Token Contract**
+The ERC20 Token contract creates an initial supply of 100,000 tokens and allows the owner to mint additional tokens.
 
-3. **Token Contract**
-   - Implements an ERC20-compliant token using OpenZeppelin’s `ERC20` standard.
-   - Includes minting functionality, allowing the contract owner to create new tokens.
+- **Token Name**: `Token`
+- **Token Symbol**: `TKN`
+- **Contract Address on Lisk Sepolia Testnet**: `0x25EFdf2b5165d828499c6fa1729A82238B818924`
+- **Functions:**
+  - `mint`: Allows the contract owner to mint new tokens.
 
-## Features
+### 3. **MultisigFactory Contract**
+The MultisigFactory contract is responsible for creating new instances of the MultiSig wallet.
 
-### MultiSig Contract
+- **Contract Address on Lisk Sepolia Testnet**: `0x34C28447972e10d107C99a95a743Cb8622611A04`
+- **Functions:**
+  - `createMultisigWallet`: Create a new MultiSig wallet.
+  - `getMultiSigClones`: View all deployed MultiSig wallets.
 
-- **Transaction Approval:**
-  - Requires a quorum of signers to approve transactions before they are executed.
-  - Supports ERC20 token transfers.
+## Deployment Information
 
-- **Quorum Update:**
-  - A proposal system allows valid signers to propose and approve changes to the transaction approval quorum.
-  
-- **Transaction Management:**
-  - Keep track of transaction details, approvals, and completion status.
-  - Provides methods to fetch individual transactions.
+All contracts have been deployed on the Lisk Sepolia testnet.
 
-### MultiSig Factory Contract
+- **MultiSig Factory Contract**: `0x34C28447972e10d107C99a95a743Cb8622611A04`
+- **Token Contract**: `0x25EFdf2b5165d828499c6fa1729A82238B818924`
 
-- **Wallet Deployment:**
-  - Allows users to deploy multiple instances of the `MultiSig` wallet with a specified quorum and signers.
+## How to Use
 
-- **Cloning:**
-  - Keeps track of deployed wallet instances for later retrieval.
+### 1. **MultiSig Wallet**
+- Deploy the `MultiSig` contract using the factory contract.
+- Interact with the wallet to create transactions, approve them, and manage quorum updates.
 
-### Token Contract
+### 2. **Token**
+- Use the `Token` contract to manage token minting. Only the owner can mint new tokens.
 
-- **Token Minting:**
-  - The owner of the contract can mint new tokens as required.
-  
-- **ERC20 Compliance:**
-  - Fully compliant with the ERC20 standard for fungible tokens.
+### 3. **MultisigFactory**
+- Create new instances of the `MultiSig` contract by calling the `createMultisigWallet` function with the required quorum and signers.
 

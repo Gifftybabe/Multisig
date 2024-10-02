@@ -10,3 +10,6 @@ const MultisigFactoryModule = buildModule("MultisigFactoryModule", (m) => {
 });
 
 export default MultisigFactoryModule;
+
+
+

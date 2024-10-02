@@ -26,3 +26,5 @@ contract Token is ERC20("Token", "TKN") {
         _mint(msg.sender, _amount * 1e18); // Mint the specified amount of WCXI tokens (with 18 decimals) to the owner's address
     }
 }
+
+
